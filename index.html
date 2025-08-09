@@ -14,12 +14,23 @@
                 left: 0px;
                 background-size: cover;
             }
+            
+            #button-visual{
+                background-color: fuchsia;
+                padding: 20px;
+                margin: 5px;
+                border-radius: 10%;
+            }
+
+            #button-visual.hover{
+                background-color: pink;
+            }
         </style>
     </head>
 
     <body>
-        <input type="button" value="+" onclick="increaseSize()"></input>
-        <input type="button" value='-' onclick="decreaseSize()"></input>
+        <span id="button-visual" onclick="increaseSize()">+</span>
+        <span id="button-visual" onclick="decreaseSize()">-</span>
         <div id="honse"></div>
         <script>
             function increaseSize()
