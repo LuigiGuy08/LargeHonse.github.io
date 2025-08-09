@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Large Honse</title>
+
+        <style>
+            #honse{
+                background:url('honse.gif');
+                width: 575px;
+                height: 748px;
+                top: 0px;
+                left: 0px;
+                background-size: cover;
+            }
+        </style>
+    </head>
+
+    <body>
+        <input type="button" value="+" onclick="increaseSize()"></input>
+        <input type="button" value='-' onclick="decreaseSize()"></input>
+        <div id="honse"></div>
+        <script>
+            function increaseSize()
+            {
+                let newWidth = document.getElementById('honse').offsetWidth;
+                let newHeight = document.getElementById('honse').offsetHeight;
+                newWidth *= 1.1;
+                newHeight *= 1.1;
+                document.getElementById('honse').style.width = newWidth + 'px';
+                document.getElementById('honse').style.height = newHeight + 'px';
+                console.log(document.getElementById('honse').offsetWidth);
+            }
+
+            function decreaseSize()
+            {
+                let newWidth = document.getElementById('honse').offsetWidth;
+                let newHeight = document.getElementById('honse').offsetHeight;
+                newWidth /= 1.1;
+                newHeight /= 1.1;
+                document.getElementById('honse').style.width = newWidth + 'px';
+                document.getElementById('honse').style.height = newHeight + 'px';
+                console.log(document.getElementById('honse').offsetWidth);
+            }
+        </script>
+    </body>
+<html>
