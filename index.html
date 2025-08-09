@@ -21,16 +21,12 @@
                 margin: 5px;
                 border-radius: 10%;
             }
-
-            #button-visual.hover{
-                background-color: pink;
-            }
         </style>
     </head>
 
     <body>
-        <span id="button-visual" onclick="increaseSize()">+</span>
-        <span id="button-visual" onclick="decreaseSize()">-</span>
+        <input type="button" id='button-visual' value="+" onclick="increaseSize()"></input>
+        <input type="button" id="button-visual" value='-' onclick="decreaseSize()"></input>
         <div id="honse"></div>
         <script>
             function increaseSize()
