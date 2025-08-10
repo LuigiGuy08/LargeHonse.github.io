@@ -14,12 +14,12 @@
                 left: 0px;
                 background-size: cover;
             }
-            
+
             #button-visual{
                 background-color: fuchsia;
                 height: 10%;
-                font-size: xx-large;
                 width: 10%;
+                font-size: xx-large;
                 padding: 20px;
                 margin: 5px;
                 border-radius: 10%;
@@ -27,31 +27,68 @@
         </style>
     </head>
 
-    <body>
-        <input type="button" id='button-visual' value="+" onclick="increaseSize()"></input>
-        <input type="button" id="button-visual" value='-' onclick="decreaseSize()"></input>
+    <body onload="drawImageSize()">
+        <form>
+            <input type="button" id='button-visual' value="+" onclick="increaseSize()"></input>
+            <input type="button" id="button-visual" value='-' onclick="decreaseSize()"></input>
+            <input type="button" id='button-visual' style='font-size: x-large; width:15%; height:15%'value="Reset Size" onclick="resetSize()"></input><br>
+            Percentage Change per Click:<input type="text" id="size" size="5" value="10" onchange="setPercent()">%</input>
+        </form>
+        <span style="font-size:large" id="size-disp"></span>
         <div id="honse"></div>
         <script>
+            var percentChange = 0.1;
+            function setPercent()
+            {
+                percentChange = document.getElementById('size').value;
+                if (percentChange < 1)
+                {
+                    percentChange = 1;
+                    alert("Value must be at least 1%");
+                    document.getElementById('size').value = 1;
+                }
+
+                console.log(percentChange);
+                percentChange /= 100;
+                console.log(percentChange);
+            }
             function increaseSize()
             {
                 let newWidth = document.getElementById('honse').offsetWidth;
                 let newHeight = document.getElementById('honse').offsetHeight;
-                newWidth *= 1.1;
-                newHeight *= 1.1;
+                newWidth *= (1 + percentChange);
+                newHeight *= (1 + percentChange);
                 document.getElementById('honse').style.width = newWidth + 'px';
                 document.getElementById('honse').style.height = newHeight + 'px';
                 console.log(document.getElementById('honse').offsetWidth);
+                drawImageSize();
             }
 
             function decreaseSize()
             {
                 let newWidth = document.getElementById('honse').offsetWidth;
                 let newHeight = document.getElementById('honse').offsetHeight;
-                newWidth /= 1.1;
-                newHeight /= 1.1;
+                newWidth /= (1 + percentChange);
+                newHeight /= (1 + percentChange);
                 document.getElementById('honse').style.width = newWidth + 'px';
                 document.getElementById('honse').style.height = newHeight + 'px';
                 console.log(document.getElementById('honse').offsetWidth);
+                drawImageSize();
+            }
+
+            function resetSize()
+            {
+                document.getElementById('honse').style.width = '575px';
+                document.getElementById('honse').style.height = '748px'; 
+                document.getElementById('size').value = 10;
+                setPercent();
+                drawImageSize();
+            }
+
+            function drawImageSize()
+            {
+                let percentDisp = Math.trunc((document.getElementById('honse').offsetWidth / 575) * 100);
+                document.getElementById('size-disp').innerHTML = "Image size: " + percentDisp + '%';
             }
         </script>
     </body>
